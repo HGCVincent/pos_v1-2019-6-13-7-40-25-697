@@ -71,3 +71,16 @@ const drawReceipts = (barcodes) => {
     result += '**********************';
     return result;
 }
+
+const printReceipt = tags => {
+    let flag = true;
+    tags.forEach(tag => {
+        if (!isExited(tag)){
+            flag = false;
+        }
+    })
+    if (flag){
+        console.log(drawReceipts(tags));
+    }
+    else console.log(drawReceipts(tags));
+}
