@@ -49,3 +49,25 @@ const getPromotion = (cart) =>{
     }
     return cart;
 }
+
+const drawReceipts = (barcodes) => {
+    let itemList = loadAllItems();
+    let allItems = {};
+    itemList.forEach(item =>{
+        let barcode = item.barcode;
+        allItems[barcode] = item;
+    });
+    let cart = getCountOfItems(barcodes);
+    let orderList = getPromotion(getCountOfItems(barcodes));
+    let result = '***<没钱赚商店>收据***\n';
+    let sum = 0;
+    let saveMoney = 0;
+    for (let i in orderList ) {
+        result += `名称：${allItems[i].name}，数量：${cart[i]}${allItems[i].unit}，单价：${allItems[i].price.toFixed(2)}(元)，小计：` + (allItems[i].price * orderList[i]).toFixed(2) + '(元)\n';
+        sum += orderList[i] * allItems[i].price;
+        saveMoney += (cart[i] - orderList[i]) * allItems[i].price;
+    }
+    result += `----------------------\n总计:${sum.toFixed(2)}(元)\n节省:${saveMoney.toFixed(2)}(元)\n`;
+    result += '**********************';
+    return result;
+}
