@@ -35,3 +35,17 @@ const getCountOfItems = (barcodes) =>{
     })
     return cart;
 }
+
+const getPromotion = (cart) =>{
+    for(let item in cart){
+        loadPromotions()[0].barcodes.forEach((barcode) => {
+            if (item === barcode){
+                let count = parseInt(cart[item] / 2);
+                if (count > 0){
+                    cart[item] -= 1;
+                }
+            }
+        })
+    }
+    return cart;
+}
