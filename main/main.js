@@ -67,7 +67,7 @@ const drawReceipts = (barcodes) => {
         sum += orderList[i] * allItems[i].price;
         saveMoney += (cart[i] - orderList[i]) * allItems[i].price;
     }
-    result += `----------------------\n总计:${sum.toFixed(2)}(元)\n节省:${saveMoney.toFixed(2)}(元)\n`;
+    result += `----------------------\n总计：${sum.toFixed(2)}(元)\n节省：${saveMoney.toFixed(2)}(元)\n`;
     result += '**********************';
     return result;
 }
